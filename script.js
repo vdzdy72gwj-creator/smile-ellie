@@ -9,7 +9,8 @@ yesBtn.addEventListener('click', () => {
     yesBtn.textContent = 'Thank you! 💕';
 });
 
-noBtn.addEventListener('mouseover', () => {
+// Extract button movement logic to avoid duplication
+function moveNoButton() {
     const container = document.querySelector('.container');
     const containerRect = container.getBoundingClientRect();
     const btnRect = noBtn.getBoundingClientRect();
@@ -24,20 +25,12 @@ noBtn.addEventListener('mouseover', () => {
     
     // Apply the new position
     noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
-});
+}
+
+noBtn.addEventListener('mouseover', moveNoButton);
 
 // Also move on touch for mobile devices
 noBtn.addEventListener('touchstart', (e) => {
     e.preventDefault();
-    const container = document.querySelector('.container');
-    const containerRect = container.getBoundingClientRect();
-    const btnRect = noBtn.getBoundingClientRect();
-    
-    const maxX = containerRect.width - btnRect.width - 100;
-    const maxY = 150;
-    
-    const randomX = Math.random() * maxX - maxX / 2;
-    const randomY = Math.random() * maxY - maxY / 2;
-    
-    noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+    moveNoButton();
 });
