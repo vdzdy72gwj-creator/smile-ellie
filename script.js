@@ -36,6 +36,9 @@ function initializeNoButton() {
 // Event listeners for desktop (hover)
 noBtn.addEventListener('mouseenter', moveNoButton);
 
+// Event listener for keyboard navigation (accessibility)
+noBtn.addEventListener('focus', moveNoButton);
+
 // Event listeners for mobile (touch)
 noBtn.addEventListener('touchstart', function(e) {
     e.preventDefault();
